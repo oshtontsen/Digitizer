@@ -7,12 +7,11 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 import numpy as np
 from PIL import Image
-
 from prediction import make_prediction
 
 # The types of uploads should be limited to
 # prevent HTML or php injection attacks.
-UPLOAD_FOLDER = 'C:/Users/OSHX1/Documents/Projects/WebDev/Digitizer/uploads'
+UPLOAD_FOLDER = '/home/otsen/FlaskApps/Digitizer/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
@@ -22,6 +21,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+'''
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
-    return '''
+    return 
     <!doctype html>
     <title>Upload New File</title>
     <h1>Upload New File</h1>
@@ -48,8 +48,8 @@ def upload_file():
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
-    '''
-
+    
+'''
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -59,11 +59,11 @@ def uploaded_file(filename):
     print(my_prediction)
     # Input the image into the neural network
     return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+                              filename)
 
-# @app.route('/')
-# def index():
-#     return render_template("digitizer.html")
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 
 # @app.route('/predict',methods=['POST','GET'])
