@@ -12,7 +12,7 @@ from prediction import make_prediction
 
 # The types of uploads should be limited to
 # prevent HTML or php injection attacks.
-UPLOAD_FOLDER = 'C:/Users/OSHX1/Documents/Projects/WebDev/Digitizer/uploads'
+UPLOAD_FOLDER = '/home/otsen/Flask/Digitizer/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
